@@ -27,7 +27,7 @@ app.listen(3000, (err, res) => {
   console.log("Server is running on Port 3000");
 });
 
-app.use("/api/users", userRoute);
+app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 
 // ERROR MIDDLEWARE
