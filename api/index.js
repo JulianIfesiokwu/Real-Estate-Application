@@ -30,7 +30,7 @@ app.listen(3000, (err, res) => {
 
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
-app.use("/api/listing", listingRoute);
+app.use("/api/listings", listingRoute);
 
 // ERROR MIDDLEWARE
 app.use((err, req, res, next) => {
