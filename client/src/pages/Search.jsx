@@ -100,7 +100,6 @@ const Search = () => {
       setSidebarData({ ...sidebarData, sort, order });
     }
   };
-  console.log(sidebarData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
