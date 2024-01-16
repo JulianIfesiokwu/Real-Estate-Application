@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import ListingItem from "../components/ListingItem";
 
 const Search = () => {
   const navigate = useNavigate();
@@ -92,6 +93,7 @@ const Search = () => {
       setSidebarData({ ...sidebarData, sort, order });
     }
   };
+  console.log(sidebarData);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -103,7 +105,7 @@ const Search = () => {
     urlParams.set("furnished", sidebarData.furnished);
     urlParams.set("offer", sidebarData.offer);
     urlParams.set("sort", sidebarData.sort);
-    urlParams.set("order", sidebarData.offer);
+    urlParams.set("order", sidebarData.order);
 
     const searchQuery = urlParams.toString();
     navigate(`/search?${searchQuery}`);
@@ -218,6 +220,26 @@ const Search = () => {
         <h1 className='text-3xl font-semibold border-b p-3 text-slate-700 mt-5'>
           Listing Results
         </h1>
+        <div className='p-6 flex flex-wrap gap-4'>
+          {!loading && listings.length === 0 && (
+            <p className='text-xl text-slate-700'>No Listings Found!</p>
+          )}
+          {loading && (
+            <p className='text-xl text-slate-700 text-center w-full'>
+              Loading...
+            </p>
+          )}
+          {!loading &&
+            listings &&
+            listings.map((listing) => {
+              return (
+                <ListingItem
+                  key={listing._id}
+                  listing={listing}
+                />
+              );
+            })}
+        </div>
       </div>
     </div>
   );
