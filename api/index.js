@@ -5,6 +5,7 @@ import userRoute from "./routes/user.route.js";
 import authRoute from "./routes/auth.route.js";
 import listingRoute from "./routes/listing.route.js";
 import cookieParser from "cookie-parser";
+import path from "path";
 
 dotenv.config();
 
@@ -24,6 +25,8 @@ mongoose
     console.log(error);
   });
 
+const __dirname = path.resolve();
+
 app.listen(3000, (err, res) => {
   console.log("Server is running on Port 3000");
 });
@@ -31,6 +34,12 @@ app.listen(3000, (err, res) => {
 app.use("/api/user", userRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/listings", listingRoute);
+
+app.use(express.static(path.join(__dirname, "/client/dist")));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
+});
 
 // ERROR MIDDLEWARE
 app.use((err, req, res, next) => {
