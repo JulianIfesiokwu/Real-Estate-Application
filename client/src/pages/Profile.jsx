@@ -274,7 +274,7 @@ const Profile = () => {
                 />
               </Link>
               <Link
-                to={`/listing/${listing._id}`}
+                to={`/listings/${listing._id}`}
                 className='text-slate-700 font-semibold hover-underline truncate'
               >
                 <p>{listing.name}</p>
