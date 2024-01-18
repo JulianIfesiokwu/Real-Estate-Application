@@ -109,7 +109,7 @@ const Profile = () => {
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart());
-      const res = await fetch(`api/aiuth/signout`);
+      const res = await fetch(`api/auth/signout`);
       const data = res.json();
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message));
@@ -264,7 +264,7 @@ const Profile = () => {
               className='flex items-center border p-3 justify-between rounded-lg gap-4'
             >
               <Link
-                to={`/listing/${listing._id}`}
+                to={`/listings/${listing._id}`}
                 className=''
               >
                 <img
